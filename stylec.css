@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+:root {
+    --primary: #ff85a2;
+    --secondary: #ff4d94;
+    --glass: rgba(255, 255, 255, 0.75);
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top right, #fff5f8, #ffe0e9);
+    background-image: radial-gradient(#ffc1e3 1px, transparent 1px);
+    background-size: 25px 25px;
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+}
+
+/* --- Sticker Styling --- */
+.floating-sticker {
+    position: absolute;
+    width: 200px; 
+    height: auto;/* Adjusted size to fit 10 nicely */
+    z-index: 1; 
+    filter: drop-shadow(8px 8px 0px rgba(255, 255, 255, 0.5));
+    animation: floatAnim 5s infinite ease-in-out;
+    pointer-events: none; /* So you can click buttons under them! */
+    mix-blend-mode: screen;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+/* Unique positions for all 10 stickers
+.s1 { top: 10%; left: 5%; transform: rotate(-15deg); }
+.s2 { top: 15%; right: 8%; transform: rotate(15deg); animation-delay: 1s; }
+.s3 { bottom: 10%; left: 10%; transform: rotate(10deg); animation-delay: 2s; }
+.s4 { bottom: 15%; right: 5%; transform: rotate(-10deg); animation-delay: 0.5s; }
+.s5 { top: 45%; left: 3%; transform: rotate(20deg); animation-delay: 1.5s; }
+.s6 { top: 5%; right: 40%; transform: rotate(-5deg); animation-delay: 2.5s; }
+.s7 { bottom: 40%; right: 2%; transform: rotate(-15deg); animation-delay: 3s; }
+.s8 { top: 8%; left: 35%; transform: rotate(12deg); animation-delay: 0.2s; }
+.s9 { bottom: 5%; left: 30%; transform: rotate(-10deg); animation-delay: 1.8s; }
+.s10 { bottom: 30%; right: 25%; transform: rotate(15deg); animation-delay: 2.2s; } */
+/* Updated positions to stay AWAY from the center card area */
+/* Unique positions pushed to the extreme edges */
+.s1 { top: 3%; left: 2%; width: 180px; transform: rotate(-15deg); }
+.s2 { top: 8%; right: 4%; width: 150px; transform: rotate(20deg); animation-delay: 1s; }
+.s3 { bottom: 5%; left: 3%; width: 210px; transform: rotate(-10deg); animation-delay: 2s; }
+.s4 { bottom: 8%; right: 2%; width: 170px; transform: rotate(15deg); animation-delay: 0.5s; }
+
+/* Side Stickers - Pushed far out */
+.s5 { top: 40%; left: -2%; width: 190px; transform: rotate(-25deg); animation-delay: 1.5s; }
+.s6 { top: 15%; left: 25%; width: 130px; transform: rotate(10deg); animation-delay: 2.5s; }
+.s7 { top: 50%; right: -3%; width: 160px; transform: rotate(15deg); animation-delay: 3s; }
+
+/* Tiny fillers */
+.s8 { top: 70%; left: 15%; width: 120px; transform: rotate(-5deg); animation-delay: 0.2s; }
+.s9 { bottom: 20%; left: 25%; width: 140px; transform: rotate(12deg); animation-delay: 1.8s; }
+.s10 { top: 10%; right: 25%; width: 110px; transform: rotate(-12deg); animation-delay: 2.2s; }
+@keyframes floatAnim {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-25px) rotate(5deg); }
+}
+
+/* --- Card & UI Styling --- */
+.glass-morph {
+    background: var(--glass);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 2px solid #ffffff;
+    padding: 50px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(255, 105, 180, 0.15);
+    max-width: 450px;
+    width: 85%;
+    position: relative;
+    z-index: 100;
+}
+
+.header-icon { font-family: 'Playfair Display', serif; font-size: 2.0rem; margin-bottom: 10px; animation: heartbeat 1.5s infinite; }
+
+.gradient-text {
+    background: linear-gradient(45deg, #ff4d94, #ff85a2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Playfair Display', serif;
+}
+
+h1 { font-size: 2.6rem; margin: 10px 0; line-height: 1.2; }
+
+.cutout {
+    position: fixed;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 20; 
+}
+
+.left-pop { left: -200px; top: 35%; }
+.right-pop { right: -200px; bottom: 35%; }
+
+.left-pop.active { transform: translateX(250px) rotate(10deg); }
+.right-pop.active { transform: translateX(-250px) rotate(-10deg); }
+
+.pop-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.pop-content span { font-size: 1rem; font-weight: bold; color: var(--secondary); margin-top: 5px; }
+
+.btn-wrapper { margin-top: 35px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+
+button {
+    border: none;
+    border-radius: 100px;
+    padding: 18px 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.primary-btn {
+    background: var(--secondary);
+    color: white;
+    box-shadow: 0 10px 25px rgba(255, 77, 148, 0.4);
+    font-size: 1.2rem;
+}
+
+.primary-btn:hover { transform: scale(1.1); background: #e63982; }
+
+.secondary-btn { background: transparent; color: #888; text-decoration: underline; }
+
+.hidden { display: none; }
+.success-title { font-family: 'Playfair Display', serif; color: var(--secondary); font-size: 2.2rem; }
+.celebrate-gfx { font-size: 4.5rem; margin-bottom: 10px; }
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
